@@ -1,0 +1,35 @@
+Вот пример кода, который позволяет добавить по одному значению в 10 столбцов за раз с использованием psycopg2:
+
+import psycopg2
+
+# Подключение к базе данных
+conn = psycopg2.connect(database="mydatabase", user="myuser", password="mypassword", host="localhost", port="5432")
+cur = conn.cursor()
+
+# Значения, которые нужно добавить в каждый столбец
+value1 = 'Значение1'
+value2 = 'Значение2'
+value3 = 'Значение3'
+value4 = 'Значение4'
+value5 = 'Значение5'
+value6 = 'Значение6'
+value7 = 'Значение7'
+value8 = 'Значение8'
+value9 = 'Значение9'
+value10 = 'Значение10'
+
+# SQL-запрос для добавления значений
+sql = "INSERT INTO mytable (column1, column2, column3, column4, column5, column6, column7, column8, column9, column10) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+
+# Добавление значений в базу данных
+cur.execute(sql, (value1, value2, value3, value4, value5, value6, value7, value8, value9, value10))
+
+# Применение изменений
+conn.commit()
+
+# Закрытие соединения
+cur.close()
+conn.close()
+
+
+В этом примере предполагается, что у вас уже есть созданная база данных с именем "mydatabase", таблица с именем "mytable" и 10 столбцов в этой таблице с именами "column1" до "column10" и правильные данные для подключения к базе данных. Вы можете изменить эти параметры под свои нужды.
